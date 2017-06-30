@@ -1,0 +1,61 @@
+<div class="row">
+
+ <!-- Line Chart - Multiple Series -->
+  <div class="col-xs-6">
+    <h3>Visits By Country Per Day</h3>
+    <%= line_chart Visit.group(:created_at).count %>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <!-- Pie Chart -->
+  <div class="col-xs-6">
+    <h3>Total Visits by Country</h3>
+    <%= pie_chart @visits.group(:country).count %>
+  </div>
+
+  <!-- Geo Chart -->
+  <div class="col-xs-6">
+    <h3>Visits By Day</h3>
+    <%= geo_chart @visits.group(:country).count %>
+  </div>
+
+</div>
+
+<!-- area chart -->
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Total Load Time By Day</h3>
+    <%= area_chart Visit.group(:created_at).maximum(:load_time) %>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Column Chart -->
+  <div class="col-xs-6">
+    <h3>Total Visits Per Country</h3>
+    <%= column_chart @visits.group(:country).count %>
+  </div>
+
+<div class="col-xs-6">
+<h3>Multiple series</h3>
+  <%= line_chart Visit.group(:goal_id).group(:created_at).count %>
+</div>
+
+<div class="col-xs-6">
+<h3>Timeline</h3>
+<%= timeline [
+  ["Washington", "1789-04-29", "1797-03-03"],
+  ["Adams", "1797-03-03", "1801-03-03"],
+  ["Jefferson", "1801-03-03", "1809-03-03"]
+] %>
+</div>
+
+  <!-- Bar Chart -->
+  <div class="col-xs-6">
+    <h3>Total Visits Per Country</h3>
+    <%= bar_chart @visits.group(:country).count %>
+  </div>
+</div>
